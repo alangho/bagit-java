@@ -58,7 +58,7 @@ public interface Bag extends Closeable {
 		public boolean isSerialized;
 		
 		/**
-		 * The file extension typicaly appended to a bag name
+		 * The file extension typically appended to a bag name
 		 * in the given format when it is written to disk.
 		 */
 		public String extension;
@@ -77,16 +77,42 @@ public interface Bag extends Closeable {
 	 */
 	Version getVersion();
 	
+	/**
+	 * Gets a file from a bag, which may be a file or directory.
+	 * @return A file from the current bag.
+	 */
 	File getFile();
 
+	/**
+	 * Sets a file to which the bag conforms.
+	 * @param file Sets a {@link File} to the current bag.
+	 */
 	void setFile(File file);
 	
+	/**
+	 * Gets a list of manifests from a payload to which the bag conforms.
+	 * @return A manifest list that belongs to a payload from the current bag.
+	 */
 	List<Manifest> getPayloadManifests();
 	
+	/**
+	 * Gets an algorithm manifest from a payload to which the bag conforms. 
+	 * @param algorithm The type of {@link Algorithm} used.
+	 * @return An algorithm manifest that belongs to a payload from the current bag.
+	 */
 	Manifest getPayloadManifest(Algorithm algorithm);
 
+	/**
+	 * Gets a list of manifests from the tags to which the bag conforms.
+	 * @return A manifest list that belongs to the tags from the current bag.
+	 */
 	List<Manifest> getTagManifests();
 	
+	/**
+	 * Gets an algorithm manifest from the tags to which the bag conforms.
+	 * @param algorithm The type of {@link Algorithm} used.
+	 * @return An algorithm manifest that belongs to the tags from the current bag.
+	 */
 	Manifest getTagManifest(Algorithm algorithm);
 		
 	Collection<BagFile> getTags();
