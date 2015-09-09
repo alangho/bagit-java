@@ -85,7 +85,7 @@ public interface Bag extends Closeable {
 
 	/**
 	 * Sets a file to which the bag conforms.
-	 * @param file Sets a {@link File} to the current bag.
+	 * @param file Sets a file to the current bag.
 	 */
 	void setFile(File file);
 	
@@ -97,7 +97,7 @@ public interface Bag extends Closeable {
 	
 	/**
 	 * Gets an algorithm manifest from a payload to which the bag conforms. 
-	 * @param algorithm The type of {@link Algorithm} used.
+	 * @param algorithm The type of algorithm used.
 	 * @return An algorithm manifest that belongs to a payload from the current bag.
 	 */
 	Manifest getPayloadManifest(Algorithm algorithm);
@@ -110,33 +110,82 @@ public interface Bag extends Closeable {
 	
 	/**
 	 * Gets an algorithm manifest from the tags to which the bag conforms.
-	 * @param algorithm The type of {@link Algorithm} used.
+	 * @param algorithm The type of algorithm used.
 	 * @return An algorithm manifest that belongs to the tags from the current bag.
 	 */
 	Manifest getTagManifest(Algorithm algorithm);
-		
+	
+	/**
+	 * Gets a collection of BagFiles that contains tags from which the bag conforms.
+	 * @return A collection of BagFiles that contains tags from the current bag.
+	 */
 	Collection<BagFile> getTags();
 
+	/**
+	 * Gets a collection of BagFiles that contains the payload from which the bag conforms.
+	 * @return A collection of BagFiles that contains the payload from the current bag.
+	 */
 	Collection<BagFile> getPayload();
 	
+	/**
+	 * Removes a BagFile from located at the filepath from which the bag conforms.
+	 * @param filepath Location of the BagFile to be removed from the current bag.
+	 */
 	void removeBagFile(String filepath);
 
+	/**
+	 * Removes a tag directory located at the filepath from which the bag conforms.
+	 * @param filepath Location of the tag directory to be removed from the current bag.
+	 */
 	void removeTagDirectory(String filepath);
 	
+	/**
+	 * Removes a payload directory located at the filepath from which the bag conforms.
+	 * @param filepath Location of the payload directory to be removed from the current bag.
+	 */
 	void removePayloadDirectory(String filepath);
 	
+	/**
+	 * Gets a BagFile from the located at the filepath from which the bag conforms.
+	 * @param filepath Location of the BagFile to retrieve from the current bag.
+	 * @return A BagFile located at the filepath from that belongs to the current bag.
+	 */
 	BagFile getBagFile(String filepath);
 	
+	/**
+	 * Puts a BagFile in the current bag.
+	 * @param bagFile The BagFile to put in the current bag.
+	 */
 	void putBagFile(BagFile bagFile);
 
+	/**
+	 * Puts a collection of BagFiles in the current bag.
+	 * @param bagFiles The collection of BagFiles to put in the current bag.
+	 */
 	void putBagFiles(Collection<BagFile> bagFiles);
 	
+	/**
+	 * Adds a file to the payload from which the bag conforms.
+	 * @param file The file to add to the payload of the current bag.
+	 */
 	void addFileToPayload(File file);
 	
+	/**
+	 * Adds a list of files to the payload from which the bag conforms.
+	 * @param files The list of files to add to the payload of the current bag.
+	 */
 	void addFilesToPayload(List<File> files);
 	
+	/**
+	 * Adds a file as a tag to the current bag.
+	 * @param file The file that is added as a tag to the current bag.
+	 */
 	void addFileAsTag(File file);
 
+	/**
+	 * Adds a list of files as tags to the current bag.
+	 * @param files The list of files that is added as tags to the current bag.
+	 */
 	void addFilesAsTag(List<File> files);
 	
 	/**
@@ -146,14 +195,38 @@ public interface Bag extends Closeable {
 	 */
 	Map<Algorithm, String> getChecksums(String filepath);
 	
+	/**
+	 * Gets the bag declaration text to which the bag conforms.
+	 * @return The declaration text of the current bag.
+	 */
 	BagItTxt getBagItTxt();
 	
+	/**
+	 * Gets a "bag-info.txt" file that contains metadata elements describing
+	 * the bag and payload in name-value pairs.
+	 * @return A set of name-value pairs from a "bag-info.txt" file.
+	 */
 	BagInfoTxt getBagInfoTxt();
 	
+	/**
+	 * Gets a "fetch.txt" file that contains a list of files to be fetched
+	 * and added to the payload.
+	 * @return A list of files to be fetched and added to the payload.
+	 */
 	FetchTxt getFetchTxt();
 	
+	/**
+	 * Gets the progress of the files that are being fetched from 
+	 * the "fetch.txt" file.
+	 * @return The progress of the files that being fetched.
+	 */
 	FetchTxt getFetchProgressTxt();
 	
+	/**
+	 * Gets the format of a bag.  Bags may be serialized or they may simply be
+	 * directories on the filesystem.
+	 * @return The format of the current bag.
+	 */
 	Format getFormat();
 
 	/**
