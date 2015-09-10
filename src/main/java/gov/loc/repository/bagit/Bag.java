@@ -235,43 +235,72 @@ public interface Bag extends Closeable {
 	 */		
 	SimpleResult verifyValid();
 
+	/**
+	 * Determines whether the bag is valid according to the BagIt Specification
+	 * and sets a verifier's mode to a FailMode.
+	 * @param failMode Describes which stage a verifier fails on.
+	 * @return A {@link SimpleResult} representing the validity of the bag.
+	 */
 	SimpleResult verifyValid(FailMode failMode);
 
-	
 	/**
 	 * Determines whether the bag is complete according to the BagIt Specification.
-	 * @return A {@link SimpleResult} representing the completeness of the bag
+	 * @return A {@link SimpleResult} representing the completeness of the bag.
 	 */		
 	SimpleResult verifyComplete();
 
+	/**
+	 * Determines whether the bag is complete according to the BagIt Specification
+	 * and sets a verifier's mode to a FailMode.
+	 * @param failMode Describes which stage a verifier fails on.
+	 * @return A {@link SimpleResult} representing the completeness of the bag.
+	 */
 	SimpleResult verifyComplete(FailMode failMode);
 
-	
 	/**
 	 * Invokes a Verifier to verify a bag.
-	 * @param verifier The {@link Verifier} implementation to use
-	 * @return A {@link SimpleResult} representing the verification result for the bag
+	 * @param verifier The {@link Verifier} implementation to use.
+	 * @return A {@link SimpleResult} representing the verification result for the bag.
 	 */	
 	SimpleResult verify(Verifier verifier);
 		
 	/**
 	 * Verify that each checksum in every payload manifest can be verified against
 	 * the appropriate contents.
-	 * @return A {@link SimpleResult} representing the verification of the payload manifests for the bag
+	 * @return A {@link SimpleResult} representing the verification of the payload manifests for the bag.
 	 */
 	SimpleResult verifyPayloadManifests();
 
+	/**
+	 * Verify that each checksum in every payload manifest can be verified against
+	 * the appropriate contents and sets a verifier's mode to a FailMode.
+	 * @param failMode Describes which stage a verifier fails on.
+	 * @return A {@link SimpleResult} representing the verification of the payload manifests for the bag.
+	 */
 	SimpleResult verifyPayloadManifests(FailMode failMode);
 
+	/**
+	 * Determines whether the bag is valid according to the BagIt Specification
+	 * while adding Progress Listeners to a verifier and sets a verifier's mode to a FailMode.
+	 * @param failMode Describes which stage a verifier fails on.
+	 * @param progressListeners Receives progress reports from other components.
+	 * @return A {@link SimpleResult} representing the validity of the bag.
+	 */
 	SimpleResult verifyValid(FailMode failMode, List<ProgressListener> progressListeners);
 	
 	/**
 	 * Verify that each checksum in every tag manifest can be verified against
 	 * the appropriate contents.
-	 * @return A {@link SimpleResult} representing the verification of the tag manifests for the bag
+	 * @return A {@link SimpleResult} representing the verification of the tag manifests for the bag.
 	 */	
 	SimpleResult verifyTagManifests();
 
+	/**
+	 * Verify that each checksum in every tag manifest can be verified against
+	 * the appropriate contents and sets a verifier's mode to a FailMode.
+	 * @param failMode Describes which stage a verifier fails on.
+	 * @return A {@link SimpleResult} representing the verification of the tag manifests for the bag.
+	 */
 	SimpleResult verifyTagManifests(FailMode failMode);
 
 	
@@ -285,6 +314,11 @@ public interface Bag extends Closeable {
 	 */
 	void loadFromFiles();
 
+	/**
+	 * Loads a bag based on the tag files and payload files found on disk while ignoring 
+	 * files found in specified directories.
+	 * @param ignoreAdditionalDirectories List of Strings that contain directories to ignore.
+	 */
 	void loadFromFiles(List<String> ignoreAdditionalDirectories);
 	
 	/**
@@ -293,6 +327,12 @@ public interface Bag extends Closeable {
 	 */
 	void accept(BagVisitor visitor);
 	
+	/**
+	 * Writes to a new bag and new file.
+	 * @param writer A FileSystemWriter that writes to the bag and file.
+	 * @param file New file to be written to.
+	 * @return A new bag.
+	 */
 	Bag write(Writer writer, File file);
 
 	/**
@@ -332,9 +372,17 @@ public interface Bag extends Closeable {
 	 * @return the completed bag
 	 */
 	Bag makeComplete(Completer completer);
-		
+	
+	/**
+	 * Gets the names of constants associated with a bag.
+	 * @return The names of constants associated with the current bag.
+	 */
 	BagConstants getBagConstants();
 	
+	/**
+	 * Gets various parts of a bag for the version and underlying implementation of the bag.
+	 * @return Various parts of the current bag.
+	 */
 	BagPartFactory getBagPartFactory();
 	
 	/**
