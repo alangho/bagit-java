@@ -511,7 +511,7 @@ public interface Bag extends Closeable {
 		
 		/**
 		 * Creates a ManifestReader to read a bag's manifest file. 
-		 * @param in The InputStream that contains the manifest to read.
+		 * @param in The InputStream that contains a manifest to read.
 		 * @param encoding Checks for the contents of the manifest file or a file name.
 		 * @return A ManifestReader that contains a bags manifest contents.
 		 */
@@ -519,7 +519,7 @@ public interface Bag extends Closeable {
 		
 		/**
 		 * Creates a ManifestReader to read a bag's manifest file. 
-		 * @param in The InputStream that contains the manifest to read.
+		 * @param in The InputStream that contains a manifest to read.
 		 * @param encoding Checks for the contents of the manifest file or a file name.
 		 * @param treatBackSlashAsPathSeparator Determines if backslash is a path separator.
 		 * @return A ManifestReader that contains a bags manifest contents.
@@ -549,24 +549,89 @@ public interface Bag extends Closeable {
 		Manifest createManifest(String name);
 		
 		/**
-		 * Creates a manifest with a given name and adds a Bag File.
+		 * Creates a manifest with a given name and adds a BagFile.
 		 * @param name Names the new manifest.
-		 * @param sourceBagFile The bag file to add to the manifest.
-		 * @return A manifest with a given name and Bag File.
+		 * @param sourceBagFile The BagFile to add to the manifest.
+		 * @return A manifest with a given name and BagFile.
 		 */
 		Manifest createManifest(String name, BagFile sourceBagFile);
 		
-		
+		/**
+		 * Creates a BagItTxtReader that reads from a BagItTxt.
+		 * @param encoding The BagItTxt character encoding type.
+		 * @param in The InputStream that reads the incoming BagItTxt contents.
+		 * @return A BagItTxtReader that contains the contents of a BagItTxt.
+		 */
 		BagItTxtReader createBagItTxtReader(String encoding, InputStream in);
+		
+		/**
+		 * Creates a BagItTxtWriter that writes to a BagItTxt.
+		 * @param out The OutputStream that writes to a BagItTxt.
+		 * @param encoding The BagItTxt character encoding type.
+		 * @param lineLength Specifies a line length while writing to a BagItTxt.
+		 * @param indentSpaces Specifies an amount of spaces to indent while writing.
+		 * @return A BagItTxtWriter that writes conforming to it's given parameters.
+		 */
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
+		
+		/**
+		 * Creates a BagItTxtWriter that writes to a BagItTxt.
+		 * @param out The OutputStream that writes to a BagItTxt.
+		 * @param encoding The BagItTxt character encoding type.
+		 * @return A BagItTxtWriter that writes to a BagItTxt.
+		 */
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding);
+		
+		/**
+		 * Creates a BagItTxt that contains a BagFile.
+		 * @param bagFile The BagFile that goes in the BagItTxt.
+		 * @return A BagItTxt with a BagFile.
+		 */
 		BagItTxt createBagItTxt(BagFile bagFile);
+		
+		/**
+		 * Creates a BagItTxt.
+		 * @return A BagItTxt.
+		 */
 		BagItTxt createBagItTxt();
 		
+		/**
+		 * Creates a BagInfoTxtReader that reads from a BagInfoTxt.
+		 * @param encoding The BagInfoTxt character encoding type.
+		 * @param in The InputStream that reads the incoming BagInfoTxt contents.
+		 * @return A BagInfoTxtReader that contains the contents of a BagInfoTxt.
+		 */
 		BagInfoTxtReader createBagInfoTxtReader(String encoding, InputStream in);
+		
+		/**
+		 * Creates a BagInfoTxtWriter that writes to a BagInfoTxt.
+		 * @param out The OutputStream that writes to a BagInfoTxt.
+		 * @param encoding The BagInfoTxt character encoding type. 
+		 * @param lineLength Specifies a line length while writing to a BagInfoTxt.
+		 * @param indentSpaces Specifies an amount of spaces to indent while writing.
+		 * @return A BagInfoTxtWriter that writes conforming to it's given parameters.
+		 */
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
+		
+		/**
+		 * Creates a BagInfoTxtWriter that writes to a BagInfoTxt.
+		 * @param out The OutputStream that writes to a BagInfoTxt.
+		 * @param encoding The BagInfoTxt character encoding type.
+		 * @return A BagInfoTxtWriter that writes to a BagInfoTxt.
+		 */
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding);
+		
+		/**
+		 * Creates a BagInfoTxt that contains a BagFile.
+		 * @param bagFile The BagFile that goes in the BagInfoTxt.
+		 * @return A BagInfoTxt with a BagFile.
+		 */
 		BagInfoTxt createBagInfoTxt(BagFile bagFile);
+		
+		/**
+		 * Creates a BagInfoTxt.
+		 * @return A BagInfoTxt.
+		 */
 		BagInfoTxt createBagInfoTxt();
 		
 		
