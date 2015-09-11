@@ -368,8 +368,8 @@ public interface Bag extends Closeable {
 
 	/**
 	 * Invokes a Completer to make a bag complete.
-	 * @param completer The {@link Completer} implementation to use
-	 * @return the completed bag
+	 * @param completer The {@link Completer} implementation to use.
+	 * @return The completed bag.
 	 */
 	Bag makeComplete(Completer completer);
 	
@@ -465,7 +465,7 @@ public interface Bag extends Closeable {
 		String getDataDirectory();
 
 		/**
-		 * Get the name of the standard bag metdata file, "bag-info.txt"
+		 * Get the name of the standard bag metadata file, "bag-info.txt"
 		 * in the latest version.
 		 * @return The constant.
 		 */
@@ -508,26 +508,73 @@ public interface Bag extends Closeable {
 	 * @see Bag
 	 */
 	public interface BagPartFactory {
+		
+		/**
+		 * Creates a ManifestReader to read a bag's manifest file. 
+		 * @param in The InputStream that contains the manifest to read.
+		 * @param encoding Checks for the contents of the manifest file or a file name.
+		 * @return A ManifestReader that contains a bags manifest contents.
+		 */
 		ManifestReader createManifestReader(InputStream in, String encoding);
+		
+		/**
+		 * Creates a ManifestReader to read a bag's manifest file. 
+		 * @param in The InputStream that contains the manifest to read.
+		 * @param encoding Checks for the contents of the manifest file or a file name.
+		 * @param treatBackSlashAsPathSeparator Determines if backslash is a path separator.
+		 * @return A ManifestReader that contains a bags manifest contents.
+		 */
 		ManifestReader createManifestReader(InputStream in, String encoding, boolean treatBackSlashAsPathSeparator);
+		
+		/**
+		 * Creates a ManifestWriter that writes data to other files.
+		 * @param out The OutputStream that writes to a file.
+		 * @return A ManifestWriter that writes to an OutputStream.
+		 */
 		ManifestWriter createManifestWriter(OutputStream out);
+		
+		/**
+		 * Creates a ManifestWriter that writes data to other files.
+		 * @param out The OutputStream that writes to a file.
+		 * @param manifestSeparator A String that separates manifests.
+		 * @return A ManifestWriter that writes to an OutputStream.
+		 */
 		ManifestWriter createManifestWriter(OutputStream out, String manifestSeparator);
+		
+		/**
+		 * Creates a manifest with a given name.
+		 * @param name Names the new manifest.
+		 * @return A Manifest with a given name.
+		 */
 		Manifest createManifest(String name);
+		
+		/**
+		 * Creates a manifest with a given name and adds a Bag File.
+		 * @param name Names the new manifest.
+		 * @param sourceBagFile The bag file to add to the manifest.
+		 * @return A manifest with a given name and Bag File.
+		 */
 		Manifest createManifest(String name, BagFile sourceBagFile);
+		
+		
 		BagItTxtReader createBagItTxtReader(String encoding, InputStream in);
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding);
 		BagItTxt createBagItTxt(BagFile bagFile);
 		BagItTxt createBagItTxt();
+		
 		BagInfoTxtReader createBagInfoTxtReader(String encoding, InputStream in);
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding);
 		BagInfoTxt createBagInfoTxt(BagFile bagFile);
 		BagInfoTxt createBagInfoTxt();
+		
+		
 		FetchTxtReader createFetchTxtReader(InputStream in, String encoding);
 		FetchTxtWriter createFetchTxtWriter(OutputStream out);
 		FetchTxt createFetchTxt();
 		FetchTxt createFetchTxt(BagFile sourceBagFile);
+		
 		FetchTxtReader createFetchProgressTxtReader(InputStream in, String encoding);
 		FetchTxtWriter createFetchProgressTxtWriter(OutputStream out);
 		FetchTxt createFetchProgressTxt();
