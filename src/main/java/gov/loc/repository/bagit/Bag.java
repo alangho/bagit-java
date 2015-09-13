@@ -549,101 +549,180 @@ public interface Bag extends Closeable {
 		Manifest createManifest(String name);
 		
 		/**
-		 * Creates a manifest with a given name and adds a BagFile.
+		 * Creates a manifest with a given name and adds it to a BagFile.
 		 * @param name Names the new manifest.
-		 * @param sourceBagFile The BagFile to add to the manifest.
-		 * @return A manifest with a given name and BagFile.
+		 * @param sourceBagFile The BagFile that adds this manifest.
+		 * @return A manifest with a given name and a BagFile it belongs to.
 		 */
 		Manifest createManifest(String name, BagFile sourceBagFile);
 		
 		/**
-		 * Creates a BagItTxtReader that reads from a BagItTxt.
+		 * Creates a BagItTxtReader that reads from a file.
 		 * @param encoding The BagItTxt character encoding type.
-		 * @param in The InputStream that reads the incoming BagItTxt contents.
-		 * @return A BagItTxtReader that contains the contents of a BagItTxt.
+		 * @param in The InputStream that reads an incoming file.
+		 * @return A BagItTxtReader that reads an incoming file.
 		 */
 		BagItTxtReader createBagItTxtReader(String encoding, InputStream in);
 		
 		/**
-		 * Creates a BagItTxtWriter that writes to a BagItTxt.
-		 * @param out The OutputStream that writes to a BagItTxt.
+		 * Creates a BagItTxtWriter that writes the character encoding type,
+		 * and specifies a line length and space indentation to a BagItTxt tag file.
+		 * @param out The OutputStream that writes to a file.
 		 * @param encoding The BagItTxt character encoding type.
 		 * @param lineLength Specifies a line length while writing to a BagItTxt.
 		 * @param indentSpaces Specifies an amount of spaces to indent while writing.
-		 * @return A BagItTxtWriter that writes conforming to it's given parameters.
+		 * @return A BagItTxtWriter that writes to a file conforming to it's given parameters.
 		 */
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
 		
 		/**
-		 * Creates a BagItTxtWriter that writes to a BagItTxt.
-		 * @param out The OutputStream that writes to a BagItTxt.
+		 * Creates a BagItTxtWriter that writes the character
+		 * encoding type to a BagItTxt tag file.
+		 * @param out The OutputStream that writes to a BagItTxt tag file.
 		 * @param encoding The BagItTxt character encoding type.
-		 * @return A BagItTxtWriter that writes to a BagItTxt.
+		 * @return A BagItTxtWriter that writes to a BagItTxt tag file.
 		 */
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding);
 		
 		/**
-		 * Creates a BagItTxt that contains a BagFile.
-		 * @param bagFile The BagFile that goes in the BagItTxt.
-		 * @return A BagItTxt with a BagFile.
+		 * Creates a BagItTxt tag file and adds it to a BagFile.
+		 * @param bagFile The BagFile that adds this BagItTxt tag file.
+		 * @return A BagItTxt tag file that belongs to a BagFile.
 		 */
 		BagItTxt createBagItTxt(BagFile bagFile);
 		
 		/**
-		 * Creates a BagItTxt.
-		 * @return A BagItTxt.
+		 * Creates a BagItTxt tag file that MUST consist of exactly two lines:
+		 * <ul>
+		 * 		<li>BagIt-Version: M.N</li>
+		 * 			<ul>
+		 * 				<li>Where M.N identifies the BagIt major (M) and minor (N) version numbers.</li>
+		 * 			</ul>
+		 * 		<li>Tag-File-Character-Encoding: UTF-8</li>
+		 * 			<ul>
+		 * 				<li>UTF-8 identifies the character set encoding of tag files.</li>
+		 * 			</ul>
+		 * </ul>
+		 * The bag declaration MUST be encoded in UTF-8, and MUST NOT
+		 * contain a byte-order mark (BOM).
+		 * @return A BagItTxt tag file that consists of two lines.
 		 */
 		BagItTxt createBagItTxt();
 		
 		/**
-		 * Creates a BagInfoTxtReader that reads from a BagInfoTxt.
+		 * Creates a BagInfoTxtReader that reads the metadata elements describing
+		 * the bag and the payload with a character encoding.
 		 * @param encoding The BagInfoTxt character encoding type.
-		 * @param in The InputStream that reads the incoming BagInfoTxt contents.
-		 * @return A BagInfoTxtReader that contains the contents of a BagInfoTxt.
+		 * @param in The InputStream that reads an incoming file.
+		 * @return A BagInfoTxtReader that reads metadata elements.
 		 */
 		BagInfoTxtReader createBagInfoTxtReader(String encoding, InputStream in);
 		
 		/**
-		 * Creates a BagInfoTxtWriter that writes to a BagInfoTxt.
-		 * @param out The OutputStream that writes to a BagInfoTxt.
+		 * Creates a BagInfoTxtWriter that writes the metadata elements describing 
+		 * the bag and the payload to an OutputStream with a character encoding 
+		 * while specifying the line length and indent spaces.
+		 * @param out The OutputStream that writes to a file.
 		 * @param encoding The BagInfoTxt character encoding type. 
 		 * @param lineLength Specifies a line length while writing to a BagInfoTxt.
 		 * @param indentSpaces Specifies an amount of spaces to indent while writing.
-		 * @return A BagInfoTxtWriter that writes conforming to it's given parameters.
+		 * @return A BagInfoTxtWriter that writes to a file conforming to it's given parameters.
 		 */
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
 		
 		/**
-		 * Creates a BagInfoTxtWriter that writes to a BagInfoTxt.
-		 * @param out The OutputStream that writes to a BagInfoTxt.
+		 * Creates a BagInfoTxtWriter that writes the metadata elements describing 
+		 * the bag and the payload to an OutputStream with a character encoding.
+		 * @param out The OutputStream that writes to a file.
 		 * @param encoding The BagInfoTxt character encoding type.
-		 * @return A BagInfoTxtWriter that writes to a BagInfoTxt.
+		 * @return A BagInfoTxtWriter that writes the metadata elements.
 		 */
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding);
 		
 		/**
-		 * Creates a BagInfoTxt that contains a BagFile.
-		 * @param bagFile The BagFile that goes in the BagInfoTxt.
-		 * @return A BagInfoTxt with a BagFile.
+		 * Creates a BagInfoTxt that contains metadata elements describing the bag
+		 * and the payload and adds it to a BagFile.
+		 * @param bagFile The BagFile that adds this BagInfoTxt.
+		 * @return A BagInfoTxt that belongs to a BagFile.
 		 */
 		BagInfoTxt createBagInfoTxt(BagFile bagFile);
 		
 		/**
-		 * Creates a BagInfoTxt.
-		 * @return A BagInfoTxt.
+		 * Creates a BagInfoTxt that contains metadata elements describing
+		 * the bag and the payload.
+		 * @return A BagInfoTxt that contains metadata elements.
 		 */
 		BagInfoTxt createBagInfoTxt();
-		
-		
+		   
+		/**
+		 * Creates a FetchTxtReader that reads in a list of files to be fetched
+		 * and added to the payload before a bag can be checked for completeness.
+		 * @param in The InputStream that reads an incoming file.
+		 * @param encoding The FetchTxt character encoding type.
+		 * @return A FetchTxtReader that reads an incoming list of files to be fetched.
+		 */
 		FetchTxtReader createFetchTxtReader(InputStream in, String encoding);
+		
+		/**
+		 * Creates a FetchTxtWriter that writes a list of files that need to be fetched
+		 * and added to the payload before a bag can be checked for completeness.
+		 * @param out The OutputStream that writes to a file.
+		 * @return A FetchTxtWriter that writes a list of filed to be fetched.
+		 */
 		FetchTxtWriter createFetchTxtWriter(OutputStream out);
+		
+		/**
+		 * Creates a FetchTxt that contains a list of files that need to be fetched
+		 * and added to the payload before a bag can be checked for completeness.
+		 * @return A FetchTxt that contains a list of files to be fetched.
+		 */
 		FetchTxt createFetchTxt();
+		
+		/**
+		 * Creates a FetchTxt that contains a list of files that need 
+		 * to be fetched and added to the payload before a bag can be checked 
+		 * for completeness and adds it to a BagFile.
+		 * @param sourceBagFile The BagFile that adds this FetchTxt.
+		 * @return A FetchTxt that contains a list of files to be fetched.
+		 */
 		FetchTxt createFetchTxt(BagFile sourceBagFile);
 		
+		/**
+		 * Creates a FetchTxtReader that reads a progress of the files that 
+		 * are currently being fetched.
+		 * @param in The InputStream that reads an incoming file.
+		 * @param encoding The FetchTxt character encoding type.
+		 * @return A FetchTxtReader that returns the progress of files being fetched.
+		 */
 		FetchTxtReader createFetchProgressTxtReader(InputStream in, String encoding);
+		
+		/**
+		 * Creates a FetchTxtWriter that writes the progress of the files that
+		 * are currently being fetched.
+		 * @param out The OutputStream that writes to a file.
+		 * @return A FetchTxtWriter that writes the progress of files being fetched.
+		 */
 		FetchTxtWriter createFetchProgressTxtWriter(OutputStream out);
+		
+		/**
+		 * Creates a FetchTxt that fetches the progress of the files that
+		 * are currently being fetched.
+		 * @return A FetchTxt that fetches the current progress of fetched files.
+		 */
 		FetchTxt createFetchProgressTxt();
+		
+		/**
+		 * Creates a FetchTxt that fetches the progress of the files that
+		 * are currently being fetched ands adds it to a BagFile.
+		 * @param sourceBagFile The BagFile that adds this FetchTxt.
+		 * @return A FetchTxt that fetches the current progress of fetched files.
+		 */
 		FetchTxt createFetchProgressTxt(BagFile sourceBagFile);
+		
+		/**
+		 * Gets the version of this BagPartFactory.
+		 * @return The version of this BagPartFactory.
+		 */
 		Version getVersion();	
 	}
 		
