@@ -63,6 +63,12 @@ public interface Bag extends Closeable {
 		 */
 		public String extension;
 		
+		/**
+		 * Sets the scheme, serialization, and extension for this Format.
+		 * @param scheme The URI scheme for the format.
+		 * @param isSerialized Whether or not the format is a serialized bag format.
+		 * @param extension The file extension typically appended to a bag name.
+		 */
 		Format(String scheme, boolean isSerialized, String extension) {
 			this.scheme = scheme;
 			this.isSerialized = isSerialized;

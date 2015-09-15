@@ -91,5 +91,4 @@ public class BagHelper {
 		return filepath.startsWith(bagConstants.getDataDirectory()); 
 	}
 	
-	
 }
