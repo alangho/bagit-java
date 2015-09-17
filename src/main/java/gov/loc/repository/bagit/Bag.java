@@ -329,7 +329,7 @@ public interface Bag extends Closeable {
 	
 	/**
 	 * Invokes a BagVisitor.
-	 * @param visitor The visitor for the bag
+	 * @param visitor The visitor for the bag.
 	 */
 	void accept(BagVisitor visitor);
 	
