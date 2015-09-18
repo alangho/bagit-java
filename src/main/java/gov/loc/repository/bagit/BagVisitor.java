@@ -3,45 +3,45 @@ package gov.loc.repository.bagit;
 public interface BagVisitor {
 	
 	/**
-	 * Starts the cycle of a visitor visiting a bag.
-	 * @param bag The bag for the visitor to visit.
+	 * Called when first visiting a bag.
+	 * @param bag The bag to visit.
 	 */
 	public void startBag(Bag bag);	
 	
 	/**
-	 * Starts the tag cycle of a visitor.
+	 * Called before visiting a tag file.
 	 */
 	public void startTags();
 	
 	/**
-	 * The visitor visits the tags in the BagFile.
-	 * @param bagFile The BagFile tags to visit.
+	 * Called when visiting a tag file.
+	 * @param bagFile The tag file to visit.
 	 */
 	public void visitTag(BagFile bagFile);
 	
 	/**
-	 * Ends the tag cycle of a visitor.
+	 * Called after visiting a tag file.
 	 */
 	public void endTags();
 	
 	/**
-	 * Starts the payload cycle of a visitor.
+	 * Called before visiting a payload file.
 	 */
 	public void startPayload();
 	
 	/**
-	 * The visitor visits the payload in the BagFile.
-	 * @param bagFile The BagFile payload to visit.
+	 * Called when visiting a payload file.
+	 * @param bagFile The payload file to visit.
 	 */
 	public void visitPayload(BagFile bagFile);
 	
 	/**
-	 * Ends the payload cycle of a visitor.
+	 * Called after visiting a payload file.
 	 */
 	public void endPayload();
 	
 	/**
-	 * Ends the cycle of a visitor visiting a bag.
+	 * Called when finished visiting a bag.
 	 */
 	public void endBag();
 	

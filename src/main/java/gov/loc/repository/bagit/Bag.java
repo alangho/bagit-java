@@ -64,7 +64,7 @@ public interface Bag extends Closeable {
 		public String extension;
 		
 		/**
-		 * Sets the scheme, serialization, and extension for this Format.
+		 * Format constructor.
 		 * @param scheme The URI scheme for the format.
 		 * @param isSerialized Whether or not the format is a serialized bag format.
 		 * @param extension The file extension typically appended to a bag name.
@@ -84,14 +84,14 @@ public interface Bag extends Closeable {
 	Version getVersion();
 	
 	/**
-	 * Gets a file from a bag, which may be a file or directory.
-	 * @return A file from the current bag.
+	 * Gets a BagFile.
+	 * @return A BagFile.
 	 */
 	File getFile();
 
 	/**
-	 * Sets a file to which the bag conforms.
-	 * @param file Sets a file to the current bag.
+	 * Sets the BagFile to the incoming File. 
+	 * @param file The file to set as a BagFile.
 	 */
 	void setFile(File file);
 	
@@ -549,16 +549,16 @@ public interface Bag extends Closeable {
 		
 		/**
 		 * Creates a manifest with a given name.
-		 * @param name Names the new manifest.
+		 * @param name The name for the new manifest.
 		 * @return A Manifest with a given name.
 		 */
 		Manifest createManifest(String name);
 		
 		/**
-		 * Creates a manifest with a given name and adds it to a BagFile.
-		 * @param name Names the new manifest.
-		 * @param sourceBagFile The BagFile that adds this manifest.
-		 * @return A manifest with a given name and a BagFile it belongs to.
+		 * Creates a manifest from the sourceBagFile with a given name.
+		 * @param name The name for the new manifest.
+		 * @param sourceBagFile The BagFile used to create a manifest.
+		 * @return A manifest created from the sourceBagFile with a given name.
 		 */
 		Manifest createManifest(String name, BagFile sourceBagFile);
 		
