@@ -88,143 +88,150 @@ public interface Bag extends Closeable {
 	 * @return A BagFile.
 	 */
 	File getFile();
-
+	
 	/**
-	 * Sets the BagFile to the incoming File. 
+	 * Sets the BagFile to the incoming File.
 	 * @param file The file to set as a BagFile.
 	 */
 	void setFile(File file);
 	
 	/**
-	 * Gets a list of manifests from a payload to which the bag conforms.
-	 * @return A manifest list that belongs to a payload from the current bag.
+	 * Gets a list of payload manifest files that lists payload
+	 * files and checksums for those payload files.
+	 * @return A list of payload manifest files that lists payload files and their checksums.
 	 */
 	List<Manifest> getPayloadManifests();
 	
 	/**
-	 * Gets an algorithm manifest from a payload to which the bag conforms. 
-	 * @param algorithm The type of algorithm used.
-	 * @return An algorithm manifest that belongs to a payload from the current bag.
+	 * Gets a payload manifest file that uses an algorithm which
+	 * specifies the bag checksum algorithm used in that manifest.
+	 * @param algorithm Specifies the bag checksum algorithm used in the manifest.
+	 * @return A payload manifest file that uses a particular bag checksum algorithm.
 	 */
 	Manifest getPayloadManifest(Algorithm algorithm);
 
 	/**
-	 * Gets a list of manifests from the tags to which the bag conforms.
-	 * @return A manifest list that belongs to the tags from the current bag.
+	 * Gets a list of tag manifest files that lists other tag
+	 * files and checksums for those tag files.
+	 * @return A list of tag manifest files that lists other tag files and their checksums.
 	 */
 	List<Manifest> getTagManifests();
 	
 	/**
-	 * Gets an algorithm manifest from the tags to which the bag conforms.
-	 * @param algorithm The type of algorithm used.
-	 * @return An algorithm manifest that belongs to the tags from the current bag.
+	 * Gets a tag manifest file that uses an algorithm which
+	 * specifies the bag checksum algorithm used in that manifest.
+	 * @param algorithm Specifies the bag checksum algorithm used in the manifest.
+	 * @return A tag manifest file that uses a particular bag checksum algorithm.
 	 */
 	Manifest getTagManifest(Algorithm algorithm);
 	
 	/**
-	 * Gets a collection of BagFiles that contains tags from which the bag conforms.
-	 * @return A collection of BagFiles that contains tags from the current bag.
+	 * Gets a collection of tag files found in the bag.
+	 * @return A collection of tag files.
 	 */
 	Collection<BagFile> getTags();
 
 	/**
-	 * Gets a collection of BagFiles that contains the payload from which the bag conforms.
-	 * @return A collection of BagFiles that contains the payload from the current bag.
+	 * Gets a collection of payload files found in the bag.
+	 * @return A collection of payload files.
 	 */
 	Collection<BagFile> getPayload();
 	
 	/**
-	 * Removes a BagFile from located at the filepath from which the bag conforms.
-	 * @param filepath Location of the BagFile to be removed from the current bag.
+	 * Removes a BagFile located at the filepath.
+	 * @param filepath Location of the BagFile.
 	 */
 	void removeBagFile(String filepath);
-
+	
 	/**
-	 * Removes a tag directory located at the filepath from which the bag conforms.
-	 * @param filepath Location of the tag directory to be removed from the current bag.
+	 * Removes a tag directory from the bag.
+	 * @param filepath Location of the tag directory.
 	 */
 	void removeTagDirectory(String filepath);
 	
 	/**
-	 * Removes a payload directory located at the filepath from which the bag conforms.
-	 * @param filepath Location of the payload directory to be removed from the current bag.
+	 * Removes a payload directory from the bag.
+	 * @param filepath Location of the payload directory.
 	 */
 	void removePayloadDirectory(String filepath);
 	
 	/**
-	 * Gets a BagFile from the located at the filepath from which the bag conforms.
-	 * @param filepath Location of the BagFile to retrieve from the current bag.
-	 * @return A BagFile located at the filepath from that belongs to the current bag.
+	 * Gets a BagFile from the filepath.
+	 * @param filepath Location of the BagFile.
+	 * @return A BagFile from the filepath.
 	 */
 	BagFile getBagFile(String filepath);
 	
 	/**
-	 * Puts a BagFile in the current bag.
-	 * @param bagFile The BagFile to put in the current bag.
+	 * Adds a BagFile to the bag.
+	 * @param bagFile The BagFile to add.
 	 */
 	void putBagFile(BagFile bagFile);
 
 	/**
-	 * Puts a collection of BagFiles in the current bag.
-	 * @param bagFiles The collection of BagFiles to put in the current bag.
+	 * Adds a collection of BagFiles to the bag.
+	 * @param bagFiles The collection of BagFiles to add.
 	 */
 	void putBagFiles(Collection<BagFile> bagFiles);
 	
 	/**
-	 * Adds a file to the payload from which the bag conforms.
-	 * @param file The file to add to the payload of the current bag.
+	 * Adds a file to the payload.
+	 * @param file The file to add to the payload.
 	 */
 	void addFileToPayload(File file);
 	
 	/**
-	 * Adds a list of files to the payload from which the bag conforms.
-	 * @param files The list of files to add to the payload of the current bag.
+	 * Adds a list of files to the payload.
+	 * @param files The list of files to add to the payload.
 	 */
 	void addFilesToPayload(List<File> files);
 	
 	/**
-	 * Adds a file as a tag to the current bag.
-	 * @param file The file that is added as a tag to the current bag.
+	 * Adds a file as a tag file to the bag.
+	 * @param file The file to add as a tag file.
 	 */
 	void addFileAsTag(File file);
 
 	/**
-	 * Adds a list of files as tags to the current bag.
-	 * @param files The list of files that is added as tags to the current bag.
+	 * Adds a list of files as tag files to the bag.
+	 * @param files The list of files to add as tag files.
 	 */
 	void addFilesAsTag(List<File> files);
 	
 	/**
-	 * Finds checksums in all manifests for a file.
-	 * @param filepath The file to get checksums for.
-	 * @return A map for each algorithm to each checksum for the given file.
+	 * Gets a map of checksum algorithms from the filepath directory.
+	 * @param filepath Directory of the checksum algorithms.
+	 * @return A map of checksum algorithms and their directories.
 	 */
 	Map<Algorithm, String> getChecksums(String filepath);
 	
 	/**
-	 * Gets the bag declaration text to which the bag conforms.
-	 * @return The declaration text of the current bag.
+	 * Gets a bag declaration tag file that gives the version of the BagIt
+	 * specification it adheres to, and the character encoding used for tag files.
+	 * @return A bag declaration tag file that gives the BagIt version
+	 * and character encoding used for tag files.
 	 */
 	BagItTxt getBagItTxt();
 	
 	/**
-	 * Gets a "bag-info.txt" file that contains metadata elements describing
-	 * the bag and payload in name-value pairs.
-	 * @return A set of name-value pairs from a "bag-info.txt" file.
+	 * Gets a tag file that contains metadata elements
+	 * describing the bag and the payload.
+	 * @return A tag file that contains metadata elements describing
+	 * the bag and the payload.
 	 */
 	BagInfoTxt getBagInfoTxt();
 	
 	/**
-	 * Gets a "fetch.txt" file that contains a list of files to be fetched
-	 * and added to the payload.
+	 * Gets a file that contains a list of files to be fetched and added to
+	 * the payload before it can meaningfully be checked for completeness.
 	 * @return A list of files to be fetched and added to the payload.
 	 */
 	FetchTxt getFetchTxt();
 	
 	/**
-	 * Gets the progress of the files that are being fetched from 
+	 * Gets the progress of the files that are being fetched from
 	 * the "fetch.txt" file.
-	 * @return The progress of the files that being fetched.
+	 * @return The progress of the files that are being fetched.
 	 */
 	FetchTxt getFetchProgressTxt();
 	
@@ -234,13 +241,13 @@ public interface Bag extends Closeable {
 	 * @return The format of the current bag.
 	 */
 	Format getFormat();
-
+	
 	/**
 	 * Determines whether the bag is valid according to the BagIt Specification.
 	 * @return A {@link SimpleResult} representing the validity of the bag
-	 */		
+	 */
 	SimpleResult verifyValid();
-
+	
 	/**
 	 * Determines whether the bag is valid according to the BagIt Specification
 	 * and sets a verifier's mode to a FailMode.
@@ -248,13 +255,13 @@ public interface Bag extends Closeable {
 	 * @return A {@link SimpleResult} representing the validity of the bag.
 	 */
 	SimpleResult verifyValid(FailMode failMode);
-
+	
 	/**
 	 * Determines whether the bag is complete according to the BagIt Specification.
 	 * @return A {@link SimpleResult} representing the completeness of the bag.
-	 */		
+	 */
 	SimpleResult verifyComplete();
-
+	
 	/**
 	 * Determines whether the bag is complete according to the BagIt Specification
 	 * and sets a verifier's mode to a FailMode.
@@ -262,7 +269,7 @@ public interface Bag extends Closeable {
 	 * @return A {@link SimpleResult} representing the completeness of the bag.
 	 */
 	SimpleResult verifyComplete(FailMode failMode);
-
+	
 	/**
 	 * Invokes a Verifier to verify a bag.
 	 * @param verifier The {@link Verifier} implementation to use.
@@ -321,7 +328,7 @@ public interface Bag extends Closeable {
 	void loadFromFiles();
 
 	/**
-	 * Loads a bag based on the tag files and payload files found on disk while ignoring 
+	 * Loads a bag based on the tag files and payload files found on disk while ignoring
 	 * files found in specified directories.
 	 * @param ignoreAdditionalDirectories List of Strings that contain directories to ignore.
 	 */
@@ -386,7 +393,7 @@ public interface Bag extends Closeable {
 	BagConstants getBagConstants();
 	
 	/**
-	 * Gets various parts of a bag for the version and underlying implementation of the bag.
+	 * Gets the bagPartFactory.
 	 * @return Various parts of the current bag.
 	 */
 	BagPartFactory getBagPartFactory();
@@ -516,7 +523,7 @@ public interface Bag extends Closeable {
 	public interface BagPartFactory {
 		
 		/**
-		 * Creates a ManifestReader to read a bag's manifest file. 
+		 * Creates a ManifestReader to read a bag's manifest file.
 		 * @param in The InputStream that contains a manifest to read.
 		 * @param encoding Checks for the contents of the manifest file or a file name.
 		 * @return A ManifestReader that contains a bags manifest contents.
@@ -524,7 +531,7 @@ public interface Bag extends Closeable {
 		ManifestReader createManifestReader(InputStream in, String encoding);
 		
 		/**
-		 * Creates a ManifestReader to read a bag's manifest file. 
+		 * Creates a ManifestReader to read a bag's manifest file.
 		 * @param in The InputStream that contains a manifest to read.
 		 * @param encoding Checks for the contents of the manifest file or a file name.
 		 * @param treatBackSlashAsPathSeparator Determines if backslash is a path separator.
@@ -625,11 +632,11 @@ public interface Bag extends Closeable {
 		BagInfoTxtReader createBagInfoTxtReader(String encoding, InputStream in);
 		
 		/**
-		 * Creates a BagInfoTxtWriter that writes the metadata elements describing 
-		 * the bag and the payload to an OutputStream with a character encoding 
+		 * Creates a BagInfoTxtWriter that writes the metadata elements describing
+		 * the bag and the payload to an OutputStream with a character encoding
 		 * while specifying the line length and indent spaces.
 		 * @param out The OutputStream that writes to a file.
-		 * @param encoding The BagInfoTxt character encoding type. 
+		 * @param encoding The BagInfoTxt character encoding type.
 		 * @param lineLength Specifies a line length while writing to a BagInfoTxt.
 		 * @param indentSpaces Specifies an amount of spaces to indent while writing.
 		 * @return A BagInfoTxtWriter that writes to a file conforming to it's given parameters.
@@ -637,7 +644,7 @@ public interface Bag extends Closeable {
 		BagInfoTxtWriter createBagInfoTxtWriter(OutputStream out, String encoding, int lineLength, int indentSpaces);
 		
 		/**
-		 * Creates a BagInfoTxtWriter that writes the metadata elements describing 
+		 * Creates a BagInfoTxtWriter that writes the metadata elements describing
 		 * the bag and the payload to an OutputStream with a character encoding.
 		 * @param out The OutputStream that writes to a file.
 		 * @param encoding The BagInfoTxt character encoding type.
@@ -659,7 +666,7 @@ public interface Bag extends Closeable {
 		 * @return A BagInfoTxt that contains metadata elements.
 		 */
 		BagInfoTxt createBagInfoTxt();
-		   
+		
 		/**
 		 * Creates a FetchTxtReader that reads in a list of files to be fetched
 		 * and added to the payload before a bag can be checked for completeness.
@@ -685,8 +692,8 @@ public interface Bag extends Closeable {
 		FetchTxt createFetchTxt();
 		
 		/**
-		 * Creates a FetchTxt that contains a list of files that need 
-		 * to be fetched and added to the payload before a bag can be checked 
+		 * Creates a FetchTxt that contains a list of files that need
+		 * to be fetched and added to the payload before a bag can be checked
 		 * for completeness and adds it to a BagFile.
 		 * @param sourceBagFile The BagFile that adds this FetchTxt.
 		 * @return A FetchTxt that contains a list of files to be fetched.
@@ -694,7 +701,7 @@ public interface Bag extends Closeable {
 		FetchTxt createFetchTxt(BagFile sourceBagFile);
 		
 		/**
-		 * Creates a FetchTxtReader that reads a progress of the files that 
+		 * Creates a FetchTxtReader that reads a progress of the files that
 		 * are currently being fetched.
 		 * @param in The InputStream that reads an incoming file.
 		 * @param encoding The FetchTxt character encoding type.
@@ -729,7 +736,7 @@ public interface Bag extends Closeable {
 		 * Gets the version of this BagPartFactory.
 		 * @return The version of this BagPartFactory.
 		 */
-		Version getVersion();	
+		Version getVersion();
 	}
-		
+	
 }

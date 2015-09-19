@@ -92,14 +92,14 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	
 	/**
 	 * Sets the External Description metadata field.
-	 * @param externalDescription A description of the bag's contents 
+	 * @param externalDescription A description of the bag's contents
 	 * for those outside of your organization.
 	 */
 	void setExternalDescription(String externalDescription);
 	
 	/**
 	 * Adds the External Description metadata field.
-	 * @param externalDescription A description of the bag's contents 
+	 * @param externalDescription A description of the bag's contents
 	 * for those outside of your organization.
 	 */
 	void addExternalDescription(String externalDescription);
@@ -111,7 +111,7 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	void setBaggingDate(String baggingDate);
 	
 	/**
-	 * Sets the Bagging Date metadata field using Integers to populate the Date. 
+	 * Sets the Bagging Date metadata field using Integers to populate the Date.
 	 * @param year The year the bag was created.
 	 * @param month The month the bag was created.
 	 * @param day The day the bag was created.
@@ -194,14 +194,14 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	
 	/**
 	 * Sets the Internal Sender Identifier metadata field.
-	 * @param internalSenderIdentifier The ID assigned to this content 
+	 * @param internalSenderIdentifier The ID assigned to this content
 	 * internally at your institution, if any.
 	 */
 	void setInternalSenderIdentifier(String internalSenderIdentifier);
 	
 	/**
 	 * Adds the Internal Sender Identifier metadata field.
-	 * @param internalSenderIdentifier The ID assigned to this content 
+	 * @param internalSenderIdentifier The ID assigned to this content
 	 * internally at your institution, if any.
 	 */
 	void addInternalSenderIdentifier(String internalSenderIdentifier);
@@ -229,7 +229,7 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	/**
 	 * Gets a list of the Source Organizations belonging to this bag.
 	 * @return A list of organizations where the bag was made.
-	 */ 
+	 */
 	List<String> getSourceOrganizationList();
 	
 	/**
@@ -365,7 +365,7 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	String getBagCount();
 	
 	/**
-	 * Gets the Bag Count of this bag, if part of a group of bags, 
+	 * Gets the Bag Count of this bag, if part of a group of bags,
 	 * as a Long object.
 	 * @return The Bag Count of this bag as a Long object.
 	 * @throws ParseException Throws an exception when unable to parse
@@ -374,7 +374,7 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	Integer getBagInGroup() throws ParseException;
 	
 	/**
-	 * Gets the total number of Bags, if part of a group of bags, 
+	 * Gets the total number of Bags, if part of a group of bags,
 	 * as a Long object.
 	 * @return The total number of bags as a Long object.
 	 * @throws ParseException Throws an exception when unable to parse
@@ -437,7 +437,7 @@ public interface BagInfoTxt extends BagFile, NameValueMapList {
 	String getCaseInsensitive(String key);
 	
 	/**
-	 * Checks whether or not the bag-info tag files contains a 
+	 * Checks whether or not the bag-info tag files contains a
 	 * case-insensitive field.
 	 * @param key A String that describes which metadata field to retrieve.
 	 * @return True if the bag-info tag files contains the case-insensitive
