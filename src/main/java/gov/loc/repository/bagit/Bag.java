@@ -525,7 +525,7 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a ManifestReader to read a bag's manifest file.
 		 * @param in The InputStream that contains a manifest to read.
-		 * @param encoding Checks for the contents of the manifest file or a file name.
+		 * @param encoding The InputStream character encoding type.
 		 * @return A ManifestReader that contains a bags manifest contents.
 		 */
 		ManifestReader createManifestReader(InputStream in, String encoding);
@@ -533,23 +533,23 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a ManifestReader to read a bag's manifest file.
 		 * @param in The InputStream that contains a manifest to read.
-		 * @param encoding Checks for the contents of the manifest file or a file name.
+		 * @param encoding The InputStream character encoding type.
 		 * @param treatBackSlashAsPathSeparator Determines if backslash is a path separator.
 		 * @return A ManifestReader that contains a bags manifest contents.
 		 */
 		ManifestReader createManifestReader(InputStream in, String encoding, boolean treatBackSlashAsPathSeparator);
 		
 		/**
-		 * Creates a ManifestWriter that writes data to other files.
-		 * @param out The OutputStream that writes to a file.
+		 * Creates a ManifestWriter that writes data to an OutputStream.
+		 * @param out Writes the manifest out to an InputStream.
 		 * @return A ManifestWriter that writes to an OutputStream.
 		 */
 		ManifestWriter createManifestWriter(OutputStream out);
 		
 		/**
-		 * Creates a ManifestWriter that writes data to other files.
-		 * @param out The OutputStream that writes to a file.
-		 * @param manifestSeparator A String that separates manifests.
+		 * Creates a ManifestWriter that writes data to an OutputStream.
+		 * @param out Writes the manifest out to an InputStream.
+		 * @param manifestSeparator Separates the contents of in a manifest file.
 		 * @return A ManifestWriter that writes to an OutputStream.
 		 */
 		ManifestWriter createManifestWriter(OutputStream out, String manifestSeparator);
@@ -570,7 +570,7 @@ public interface Bag extends Closeable {
 		Manifest createManifest(String name, BagFile sourceBagFile);
 		
 		/**
-		 * Creates a BagItTxtReader that reads from a file.
+		 * Creates a BagItTxtReader that reads a "bagit.txt" file.
 		 * @param encoding The BagItTxt character encoding type.
 		 * @param in The InputStream that reads an incoming file.
 		 * @return A BagItTxtReader that reads an incoming file.
@@ -598,9 +598,9 @@ public interface Bag extends Closeable {
 		BagItTxtWriter createBagItTxtWriter(OutputStream out, String encoding);
 		
 		/**
-		 * Creates a BagItTxt tag file and adds it to a BagFile.
-		 * @param bagFile The BagFile that adds this BagItTxt tag file.
-		 * @return A BagItTxt tag file that belongs to a BagFile.
+		 * Creates a BagItTxt tag file from the given bagFile.
+		 * @param bagFile The BagFile to create a BagItTxt file.
+		 * @return A BagItTxt tag file.
 		 */
 		BagItTxt createBagItTxt(BagFile bagFile);
 		
@@ -670,7 +670,7 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a FetchTxtReader that reads in a list of files to be fetched
 		 * and added to the payload before a bag can be checked for completeness.
-		 * @param in The InputStream that reads an incoming file.
+		 * @param in The InputStream that reads a "fetch.txt" file.
 		 * @param encoding The FetchTxt character encoding type.
 		 * @return A FetchTxtReader that reads an incoming list of files to be fetched.
 		 */
@@ -679,23 +679,21 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a FetchTxtWriter that writes a list of files that need to be fetched
 		 * and added to the payload before a bag can be checked for completeness.
-		 * @param out The OutputStream that writes to a file.
+		 * @param out The OutputStream that writes to a "fetch.txt" file.
 		 * @return A FetchTxtWriter that writes a list of filed to be fetched.
 		 */
 		FetchTxtWriter createFetchTxtWriter(OutputStream out);
 		
 		/**
-		 * Creates a FetchTxt that contains a list of files that need to be fetched
+		 * Creates a FetchTxt file that contains a list of files that need to be fetched
 		 * and added to the payload before a bag can be checked for completeness.
-		 * @return A FetchTxt that contains a list of files to be fetched.
+		 * @return A FetchTxt file that contains a list of files to be fetched.
 		 */
 		FetchTxt createFetchTxt();
 		
 		/**
-		 * Creates a FetchTxt that contains a list of files that need
-		 * to be fetched and added to the payload before a bag can be checked
-		 * for completeness and adds it to a BagFile.
-		 * @param sourceBagFile The BagFile that adds this FetchTxt.
+		 * Creates a FetchTxt file from the given sourceBagFile.
+		 * @param sourceBagFile The BagFile used to create a FetchTxt file.
 		 * @return A FetchTxt that contains a list of files to be fetched.
 		 */
 		FetchTxt createFetchTxt(BagFile sourceBagFile);
@@ -703,7 +701,7 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a FetchTxtReader that reads a progress of the files that
 		 * are currently being fetched.
-		 * @param in The InputStream that reads an incoming file.
+		 * @param in The InputStream that reads a "fetch.txt" file.
 		 * @param encoding The FetchTxt character encoding type.
 		 * @return A FetchTxtReader that returns the progress of files being fetched.
 		 */
@@ -712,22 +710,22 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a FetchTxtWriter that writes the progress of the files that
 		 * are currently being fetched.
-		 * @param out The OutputStream that writes to a file.
+		 * @param out The OutputStream that writes to a "fetch.txt" file.
 		 * @return A FetchTxtWriter that writes the progress of files being fetched.
 		 */
 		FetchTxtWriter createFetchProgressTxtWriter(OutputStream out);
 		
 		/**
-		 * Creates a FetchTxt that fetches the progress of the files that
+		 * Creates a FetchTxt file that fetches the progress of the files that
 		 * are currently being fetched.
 		 * @return A FetchTxt that fetches the current progress of fetched files.
 		 */
 		FetchTxt createFetchProgressTxt();
 		
 		/**
-		 * Creates a FetchTxt that fetches the progress of the files that
-		 * are currently being fetched ands adds it to a BagFile.
-		 * @param sourceBagFile The BagFile that adds this FetchTxt.
+		 * Creates a FetchTxt file that fetches the progress of the files that
+		 * are currently being fetched from the given sourceBagFile.
+		 * @param sourceBagFile The BagFile whose FetchTxt progress must be gathered.
 		 * @return A FetchTxt that fetches the current progress of fetched files.
 		 */
 		FetchTxt createFetchProgressTxt(BagFile sourceBagFile);
