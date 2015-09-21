@@ -84,14 +84,14 @@ public interface Bag extends Closeable {
 	Version getVersion();
 	
 	/**
-	 * Gets a BagFile.
-	 * @return A BagFile.
+	 * Gets a File object that points to the bag.
+	 * @return A File that points to the bag.
 	 */
 	File getFile();
 	
 	/**
-	 * Sets the BagFile to the incoming File.
-	 * @param file The file to set as a BagFile.
+	 * Sets a File object that points to the bag.
+	 * @param file The File object that will point to the bag.
 	 */
 	void setFile(File file);
 	

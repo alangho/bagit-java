@@ -9,34 +9,34 @@ public interface BagVisitor {
 	public void startBag(Bag bag);	
 	
 	/**
-	 * Called before visiting a tag file.
+	 * Called before visiting all tag files.
 	 */
 	public void startTags();
 	
 	/**
-	 * Called when visiting a tag file.
+	 * Called when visiting tag files.
 	 * @param bagFile The tag file to visit.
 	 */
 	public void visitTag(BagFile bagFile);
 	
 	/**
-	 * Called after visiting a tag file.
+	 * Called after visiting tag files.
 	 */
 	public void endTags();
 	
 	/**
-	 * Called before visiting a payload file.
+	 * Called before visiting payload files.
 	 */
 	public void startPayload();
 	
 	/**
-	 * Called when visiting a payload file.
+	 * Called when visiting payload files.
 	 * @param bagFile The payload file to visit.
 	 */
 	public void visitPayload(BagFile bagFile);
 	
 	/**
-	 * Called after visiting a payload file.
+	 * Called after visiting payload files.
 	 */
 	public void endPayload();
 	
