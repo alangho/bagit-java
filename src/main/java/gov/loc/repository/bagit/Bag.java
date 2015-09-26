@@ -96,32 +96,28 @@ public interface Bag extends Closeable {
 	void setFile(File file);
 	
 	/**
-	 * Gets a list of payload manifest files that lists payload
-	 * files and checksums for those payload files.
-	 * @return A list of payload manifest files that lists payload files and their checksums.
+	 * Returns a list of payload manifests.
+	 * @return A list of payload manifest files.
 	 */
 	List<Manifest> getPayloadManifests();
 	
 	/**
-	 * Gets a payload manifest file that uses an algorithm which
-	 * specifies the bag checksum algorithm used in that manifest.
-	 * @param algorithm Specifies the bag checksum algorithm used in the manifest.
-	 * @return A payload manifest file that uses a particular bag checksum algorithm.
+	 * Gets a payload manifest file that uses a specific algorithm.
+	 * @param algorithm The type of bag checksum algorithm used.
+	 * @return A payload manifest file that uses a specific algorithm.
 	 */
 	Manifest getPayloadManifest(Algorithm algorithm);
 
 	/**
-	 * Gets a list of tag manifest files that lists other tag
-	 * files and checksums for those tag files.
-	 * @return A list of tag manifest files that lists other tag files and their checksums.
+	 * Returns a list of tag manifest files.
+	 * @return A list of tag manifest files.
 	 */
 	List<Manifest> getTagManifests();
 	
 	/**
-	 * Gets a tag manifest file that uses an algorithm which
-	 * specifies the bag checksum algorithm used in that manifest.
-	 * @param algorithm Specifies the bag checksum algorithm used in the manifest.
-	 * @return A tag manifest file that uses a particular bag checksum algorithm.
+	 * Gets a tag manifest file that uses a specific algorithm.
+	 * @param algorithm The type of bag checksum algorithm used.
+	 * @return A tag manifest file that uses a specific algorithm.
 	 */
 	Manifest getTagManifest(Algorithm algorithm);
 	
@@ -199,9 +195,9 @@ public interface Bag extends Closeable {
 	void addFilesAsTag(List<File> files);
 	
 	/**
-	 * Gets a map of checksum algorithms from the filepath directory.
-	 * @param filepath Directory of the checksum algorithms.
-	 * @return A map of checksum algorithms and their directories.
+	 * Finds checksums in all manifests for a file.
+	 * @param filepath The file to get checksums for.
+	 * @return A map for each algorithm to each checksum for the given file.
 	 */
 	Map<Algorithm, String> getChecksums(String filepath);
 	
@@ -222,9 +218,8 @@ public interface Bag extends Closeable {
 	BagInfoTxt getBagInfoTxt();
 	
 	/**
-	 * Gets a file that contains a list of files to be fetched and added to
-	 * the payload before it can meaningfully be checked for completeness.
-	 * @return A list of files to be fetched and added to the payload.
+	 * Gets a "fetch.txt" file.
+	 * @return A list of files to be fetched.
 	 */
 	FetchTxt getFetchTxt();
 	
@@ -315,7 +310,6 @@ public interface Bag extends Closeable {
 	 * @return A {@link SimpleResult} representing the verification of the tag manifests for the bag.
 	 */
 	SimpleResult verifyTagManifests(FailMode failMode);
-
 	
 	/**
 	 * Loads a bag based on the tag files found on disk and the payload files listed in the payload manifests.
@@ -387,13 +381,13 @@ public interface Bag extends Closeable {
 	Bag makeComplete(Completer completer);
 	
 	/**
-	 * Gets the names of constants associated with a bag.
-	 * @return The names of constants associated with the current bag.
+	 * Gets the names of constants associated with the bag.
+	 * @return The names of constants associated with the bag.
 	 */
 	BagConstants getBagConstants();
 	
 	/**
-	 * Gets the bagPartFactory.
+	 * Gets the BagPartFactory.
 	 * @return Various parts of the current bag.
 	 */
 	BagPartFactory getBagPartFactory();
@@ -541,14 +535,14 @@ public interface Bag extends Closeable {
 		
 		/**
 		 * Creates a ManifestWriter that writes data to an OutputStream.
-		 * @param out Writes the manifest out to an InputStream.
+		 * @param out The OutputStream to write the manifest to.
 		 * @return A ManifestWriter that writes to an OutputStream.
 		 */
 		ManifestWriter createManifestWriter(OutputStream out);
 		
 		/**
 		 * Creates a ManifestWriter that writes data to an OutputStream.
-		 * @param out Writes the manifest out to an InputStream.
+		 * @param out The OutputStream to write the manifest to.
 		 * @param manifestSeparator Separates the contents of in a manifest file.
 		 * @return A ManifestWriter that writes to an OutputStream.
 		 */

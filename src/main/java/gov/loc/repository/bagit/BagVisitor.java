@@ -14,7 +14,7 @@ public interface BagVisitor {
 	public void startTags();
 	
 	/**
-	 * Called when visiting tag files.
+	 * Called when visiting a tag file.
 	 * @param bagFile The tag file to visit.
 	 */
 	public void visitTag(BagFile bagFile);
@@ -30,7 +30,7 @@ public interface BagVisitor {
 	public void startPayload();
 	
 	/**
-	 * Called when visiting payload files.
+	 * Called when visiting a payload file.
 	 * @param bagFile The payload file to visit.
 	 */
 	public void visitPayload(BagFile bagFile);
