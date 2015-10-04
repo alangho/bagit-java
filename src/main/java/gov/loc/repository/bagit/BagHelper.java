@@ -109,7 +109,7 @@ public class BagHelper {
 	}
 	
 	/**
-	 * Returns a boolean based off the file found at the filepath.
+	 * Returns True if the file is a payload file, false otherwise.
 	 * @param filepath The location of the file.
 	 * @param bagConstants The names of constants associated with a bag.
 	 * @return True if the file is a payload file, false otherwise.

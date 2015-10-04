@@ -543,7 +543,7 @@ public interface Bag extends Closeable {
 		/**
 		 * Creates a ManifestWriter that writes data to an OutputStream.
 		 * @param out The OutputStream to write the manifest to.
-		 * @param manifestSeparator Separates the contents of in a manifest file.
+		 * @param manifestSeparator Separates the contents of a manifest file.
 		 * @return A ManifestWriter that writes to an OutputStream.
 		 */
 		ManifestWriter createManifestWriter(OutputStream out, String manifestSeparator);
